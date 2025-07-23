@@ -1,0 +1,54 @@
+# .gitignore for a PHP project with Composer and Tailwind CSS
+
+# Composer dependencies
+# This directory contains all the PHP libraries installed by Composer.
+# It should always be ignored, and 'composer install' should be run on deployment.
+/vendor/
+
+# Node.js dependencies
+# This directory contains all the JavaScript packages installed by npm (for Tailwind).
+# It should always be ignored, and 'npm install' should be run on deployment.
+/node_modules/
+
+# Tailwind CSS build output
+# This is the generated CSS file. It's a build artifact and should not be versioned.
+# The source file (e.g., /src/input.css) is what should be tracked.
+/dist/
+
+# Environment variables file
+# This file often contains sensitive information like database passwords or API keys.
+# It should never be committed to version control. A .env.example file should be
+# created instead to show what variables are needed.
+.env
+
+# Composer lock file
+# Committing composer.lock ensures that everyone on the team uses the exact
+# same versions of dependencies. It's generally recommended to commit this file.
+# However, for libraries, it's common to ignore it. Uncomment if you want to ignore.
+# /composer.lock
+
+# Operating System and IDE files
+# These are metadata files created by different operating systems and code editors.
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows
+Thumbs.db
+ehthumbs.db
+ehthumbs_vista.db
+
+# Visual Studio Code
+.vscode/
+
+# Log files
+# Ignore any files with a .log extension.
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Temporary files
+*.tmp
