@@ -1,16 +1,14 @@
 <?php
-// /var/www/html/confirmation.php
 session_start();
 require 'db.php';
 
-// Security check: ensure user has just placed an order.
 if (!isset($_SESSION['user_id']) || !isset($_SESSION['last_order_id'])) {
     header('Location: index.php');
     exit;
 }
 
 $last_order_id = $_SESSION['last_order_id'];
-// Unset the session variable immediately after retrieving it so this page can't be refreshed.
+
 unset($_SESSION['last_order_id']);
 ?>
 

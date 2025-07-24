@@ -1,15 +1,11 @@
 <?php
-// /var/www/html/index.php
 session_start();
 require 'db.php';
 
-// Redirect to login if user is not logged in
 if (!isset($_SESSION['user_id'])) {
     header('Location: login.php');
     exit;
 }
-
-// --- FAKE BOOK API ---
 $books_json = <<<JSON
 [
     {
@@ -18,7 +14,7 @@ $books_json = <<<JSON
         "author": "Matt Haig",
         "price": 14.99,
         "description": "Between life and death there is a library, and within that library, the shelves go on forever. Every book provides a chance to try another life you could have lived.",
-        "cover_image": "https://images-na.ssl-images-amazon.com/images/I/81AI+2D45YL.jpg"
+        "cover_image": "https://m.media-amazon.com/images/I/419X9dVWmJL._SY445_SX342_ControlCacheEqualizer_.jpg"
     },
     {
         "id": "2",
@@ -26,7 +22,7 @@ $books_json = <<<JSON
         "author": "Andy Weir",
         "price": 18.50,
         "description": "A lone astronaut must save the earth from disaster in this cinematic thriller full of suspense, humor, and fascinating science—from the author of The Martian.",
-        "cover_image": "https://images-na.ssl-images-amazon.com/images/I/91+N9A26m5L.jpg"
+        "cover_image": "https://m.media-amazon.com/images/I/81Ck2nTaH2L.jpg"
     },
     {
         "id": "3",
@@ -34,7 +30,7 @@ $books_json = <<<JSON
         "author": "Kazuo Ishiguro",
         "price": 16.95,
         "description": "A magnificent new novel from the Nobel laureate Kazuo Ishiguro—author of Never Let Me Go and the Booker Prize-winning The Remains of the Day.",
-        "cover_image": "https://images-na.ssl-images-amazon.com/images/I/71DONk2+T9L.jpg"
+        "cover_image": "https://m.media-amazon.com/images/I/913Op5vZ3ML._UF1000,1000_QL80_.jpg"
     },
     {
         "id": "4",
@@ -47,9 +43,7 @@ $books_json = <<<JSON
 ]
 JSON;
 $books = json_decode($books_json, true);
-// --- END FAKE API ---
 
-// Conversion rate (example)
 $usd_to_inr_rate = 83.50;
 
 ?>

@@ -1,19 +1,17 @@
 <?php
-// /var/www/html/login.php
 session_start();
 require 'db.php';
 
 $signup_message = '';
 $login_error = '';
 
-// --- SIGNUP LOGIC ---
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['signup'])) {
     $name = filter_input(INPUT_POST, 'name', FILTER_SANITIZE_STRING);
     $email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
     $password = $_POST['password'];
 
     if ($email && $name && !empty($password)) {
-        // Check if user already exists
+ 
         $existingUser = $db->users->findOne(['email' => $email]);
         if ($existingUser) {
             $signup_message = "<p class='text-red-500 text-center mt-4'>An account with this email already exists.</p>";
@@ -24,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['signup'])) {
                 'email' => $email,
                 'password' => $hashed_password
             ]);
-            // Use a session flash message for better user experience
+
             $_SESSION['signup_success'] = "Signup successful! Please login.";
             header("Location: login.php");
             exit;
@@ -32,7 +30,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['signup'])) {
     }
 }
 
-// --- LOGIN LOGIC ---
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['login'])) {
     $email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
     $user = $db->users->findOne(['email' => $email]);
@@ -47,7 +44,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['login'])) {
     }
 }
 
-// Check for a signup success message
 if (isset($_SESSION['signup_success'])) {
     $login_error = "<p class='text-green-500 text-center'>" . $_SESSION['signup_success'] . "</p>";
     unset($_SESSION['signup_success']);
